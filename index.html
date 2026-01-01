@@ -3,35 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LỚP 10A1 - TẾT BÍNH NGỌ 2026</title>
+    <title>CÁC BÀI TẬP LỚP 10A1</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1C3FAA',
+                        pink: '#EC4899',
+                        green: '#10B981',
+                        blue: '#3B82F6',
+                        red: '#EF4444',
+                        purple: '#8B5CF6'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
         :root {
-            --primary-red: #DC2626;
-            --gold: #FFD700;
-            --light-gold: #FEF08A;
-            --bg: #FFFBEB;
-            --card-bg: rgba(255, 255, 255, 0.88);
-            --text-dark: #7F1D1D;
-            --text-light: #991B1B;
+            --primary-color: #1C3FAA;
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
         }
+
+        [data-theme="pink"]   { --primary-color: #EC4899; }
+        [data-theme="green"]  { --primary-color: #10B981; }
+        [data-theme="blue"]   { --primary-color: #3B82F6; }
+        [data-theme="red"]    { --primary-color: #EF4444; }
+        [data-theme="purple"] { --primary-color: #8B5CF6; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            background: var(--bg-color);
             margin: 0;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Background Tết sang trọng */
+        /* Nền động + chuyển màu gradient mượt */
         .animated-bg {
             position: fixed;
             inset: 0;
-            z-index: -2;
-            background: linear-gradient(135deg, #7F1D1D, #DC2626, #F87171, #FCA5A5, #FEE2E2);
+            z-index: -1;
+            background: linear-gradient(-45deg, 
+                var(--primary-color), 
+                rgba(28,63,170,0.8), 
+                #60a5fa80, 
+                #a78bfa80, 
+                #e9a8fa60);
             background-size: 400% 400%;
             animation: gradientShift 20s ease infinite;
         }
@@ -41,111 +66,81 @@
             position: absolute;
             inset: 0;
             background: 
-                radial-gradient(circle at 20% 80%, #FFD70030, transparent 60%),
-                radial-gradient(circle at 80% 20%, #FF450030, transparent 60%),
-                radial-gradient(circle at 50% 50%, #FBBF2430, transparent 50%);
-            animation: glow 12s ease-in-out infinite;
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.4), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,100,200,0.3), transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(100,200,255,0.25), transparent 50%);
+            animation: float 25s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
+            0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        @keyframes glow {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.15); }
-        }
-
-        /* Hoa mai rơi nhẹ nhàng */
-        .petals {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .petal {
-            position: absolute;
-            width: 16px;
-            height: 24px;
-            background: linear-gradient(#FFD700, #FBBF24);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            opacity: 0.8;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.9; }
-            85% { opacity: 0.9; }
-            100% { transform: translateY(110vh) rotate(900deg); opacity: 0; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(8deg); }
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 24px;
+            padding: 20px;
             position: relative;
             z-index: 1;
         }
 
         .header {
-            background: linear-gradient(135deg, #991B1B, var(--primary-red));
+            background: linear-gradient(135deg, var(--primary-color), rgba(28,63,170,0.9));
             color: white;
-            padding: 80px 40px;
+            padding: 60px 30px;
             text-align: center;
-            border-radius: 28px;
-            margin-bottom: 50px;
-            box-shadow: 0 25px 60px rgba(220, 38, 38, 0.3);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
             position: relative;
             overflow: hidden;
         }
 
-        .header::after {
-            content: '✨ CHÚC MỪNG NĂM MỚI 2026 ✨';
+        .header::before {
+            content: '';
             position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: var(--gold);
-            text-shadow: 0 0 20px rgba(255,215,0,0.6);
-            animation: shine 3s ease-in-out infinite;
-            white-space: nowrap;
+            inset: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
         }
 
-        @keyframes shine {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; text-shadow: 0 0 30px rgba(255,215,0,0.9); }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .header h1 {
-            font-size: 3.4rem;
+            font-size: 3rem;
             font-weight: 800;
-            margin: 40px 0 16px 0;
-            text-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            margin: 0 0 12px 0;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .header p {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             opacity: 0.95;
         }
 
-        /* Card môn học - đẹp lung linh */
+        /* Card môn học - hàng ngang */
         .subject-card {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 40px 48px;
-            margin-bottom: 32px;
+            padding: 36px 40px;
+            margin-bottom: 28px;
             background: var(--card-bg);
-            border-radius: 28px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -154,9 +149,8 @@
         }
 
         .subject-card:hover {
-            transform: translateY(-16px) scale(1.03);
-            box-shadow: 0 40px 80px rgba(220,38,38,0.25);
-            border-color: var(--gold);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.2);
         }
 
         .subject-card::before {
@@ -164,8 +158,8 @@
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
-            transition: left 0.8s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: left 0.7s ease;
         }
 
         .subject-card:hover::before {
@@ -175,194 +169,214 @@
         .subject-info {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 36px;
         }
 
         .subject-icon {
-            font-size: 6rem;
-            transition: all 0.6s ease;
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+            font-size: 5.5rem;
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
         }
 
         .subject-card:hover .subject-icon {
-            transform: translateY(-12px) scale(1.2) rotate(5deg);
+            transform: translateY(-10px) scale(1.15);
         }
 
         .subject-title {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--text-light);
+            color: var(--text-primary);
         }
 
         .subject-desc {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-top: 10px;
-            opacity: 0.9;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
         }
 
         .arrow {
-            font-size: 4rem;
-            color: var(--primary-red);
-            transition: all 0.5s ease;
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            transition: all 0.4s ease;
         }
 
         .subject-card:hover .arrow {
-            transform: translateX(20px);
-            color: var(--gold);
+            transform: translateX(16px);
         }
 
-        /* Transition overlay đẹp */
-        .transition-overlay {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, #991B1Bcc, #DC2626ee);
-            backdrop-filter: blur(12px);
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .transition-overlay.show {
-            display: flex;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .loading-spinner {
-            width: 100px;
-            height: 100px;
-            border: 8px solid rgba(255,255,255,0.3);
-            border-top: 8px solid var(--gold);
-            border-radius: 50%;
-            animation: spin 1.2s linear infinite;
-            box-shadow: 0 0 30px rgba(255,215,0,0.5);
-        }
-
-        .transition-text {
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin-top: 40px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-
-        /* Settings giữ nguyên đẹp */
+        /* Settings */
         .settings-btn {
             position: fixed;
-            top: 24px;
-            right: 24px;
+            top: 20px;
+            right: 20px;
             z-index: 1000;
             background: rgba(255,255,255,0.95);
-            width: 56px; height: 56px;
+            width: 52px; height: 52px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .settings-btn:hover {
-            transform: rotate(120deg) scale(1.15);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .setting-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .setting-overlay.show {
+            display: flex;
+        }
+
+        .theme-selector {
+            background: rgba(255,255,255,0.98);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .theme-btn {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            margin: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .theme-btn.active {
+            border-color: white;
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header { padding: 60px 24px; }
-            .header h1 { font-size: 2.8rem; }
-            .header::after { font-size: 1.6rem; }
+            .header { padding: 50px 20px; }
+            .header h1 { font-size: 2.5rem; }
             .subject-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 36px 28px;
-                gap: 28px;
+                padding: 32px 24px;
+                gap: 24px;
             }
-            .subject-info { flex-direction: column; gap: 24px; }
-            .subject-icon { font-size: 5.5rem; }
-            .subject-title { font-size: 2.1rem; }
-            .arrow { transform: rotate(90deg); font-size: 3.5rem; }
-            .subject-card:hover .arrow { transform: rotate(90deg) translateY(12px); }
+            .subject-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .subject-icon { font-size: 5rem; }
+            .subject-title { font-size: 2rem; }
+            .arrow {
+                transform: rotate(90deg);
+            }
+            .subject-card:hover .arrow {
+                transform: rotate(90deg) translateY(10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 2.2rem; }
+            .subject-title { font-size: 1.8rem; }
+            .subject-icon { font-size: 4.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
-    <div class="petals" id="petals"></div>
 
-    <!-- Transition đẹp -->
-    <div class="transition-overlay" id="transition">
-        <div class="loading-spinner"></div>
-        <div class="transition-text" id="transition-text">Đang chuyển đến...</div>
+    <!-- Nút cài đặt theme -->
+    <div class="settings-btn" id="settings-btn">
+        <div style="font-size: 28px;">⚙️</div>
     </div>
 
-    <!-- Settings -->
-    <div class="settings-btn" id="settings-btn">⚙️</div>
+    <!-- Overlay chọn theme -->
+    <div class="setting-overlay" id="setting-overlay">
+        <div class="theme-selector">
+            <h3 class="text-2xl font-bold mb-6">Chọn màu chủ đạo</h3>
+            <div>
+                <div class="theme-btn active" style="background:#1C3FAA" data-theme="default"></div>
+                <div class="theme-btn" style="background:#EC4899" data-theme="pink"></div>
+                <div class="theme-btn" style="background:#10B981" data-theme="green"></div>
+                <div class="theme-btn" style="background:#3B82F6" data-theme="blue"></div>
+                <div class="theme-btn" style="background:#EF4444" data-theme="red"></div>
+                <div class="theme-btn" style="background:#8B5CF6" data-theme="purple"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="header">
             <h1>CÁC BÀI TẬP LỚP 10A1</h1>
-            <p>Ôn tập thật tốt để đón năm mới thật vui nhé!</p>
+            <p>Chọn môn học để bắt đầu ôn tập và kiểm tra</p>
         </div>
 
-        <a class="subject-card" data-url="https://10a1.github.io/vatly10a1.github.com/" data-name="Vật Lý">
+        <a href="https://10a1.github.io/vatly10a1.github.com/" class="subject-card">
             <div class="subject-info">
                 <div class="subject-icon">⚡</div>
                 <div>
                     <div class="subject-title">Vật Lý</div>
-                    <div class="subject-desc">Lý thuyết • Bài tập • Kiểm tra 1 tiết</div>
+                    <div class="subject-desc">Ôn tập cuối kỳ I - Vật lý lớp 10</div>
                 </div>
             </div>
             <div class="arrow">→</div>
         </a>
 
-        <a class="subject-card" data-url="https://10a1.github.io/hoahocazota.github.io/" data-name="Hóa Học">
+        <a href="https://10a1.github.io/hoahocazota.github.io/" class="subject-card">
             <div class="subject-info">
                 <div class="subject-icon">🧪</div>
                 <div>
                     <div class="subject-title">Hóa Học</div>
-                    <div class="subject-desc">Ôn tập cuối kỳ I • Trắc nghiệm • Tự luận</div>
+                    <div class="subject-desc">Ôn tập cuối kỳ I - Hóa học lớp 10</div>
                 </div>
             </div>
             <div class="arrow">→</div>
         </a>
 
-        <a class="subject-card" data-url="https://10a1.github.io/sinhhoc10a1.github.io/" data-name="Sinh Học">
+        <a href="https://10a1.github.io/sinhhoc10a1.github.io/" class="subject-card">
             <div class="subject-info">
                 <div class="subject-icon">🧬</div>
                 <div>
                     <div class="subject-title">Sinh Học</div>
-                    <div class="subject-desc">Di truyền • Sinh thái • Bài kiểm tra</div>
+                    <div class="subject-desc">Ôn tập cuối kỳ I - Sinh học lớp 10</div>
                 </div>
             </div>
             <div class="arrow">→</div>
         </a>
 
-        <a class="subject-card" data-url="https://10a1.github.io/english10a1.github.io/" data-name="Tiếng Anh">
+        <a href="https://10a1.github.io/english10a1.github.io/" class="subject-card">
             <div class="subject-info">
                 <div class="subject-icon">🇬🇧</div>
                 <div>
                     <div class="subject-title">Tiếng Anh</div>
-                    <div class="subject-desc">Ngữ pháp • Từ vựng • Bài thi thử</div>
+                    <div class="subject-desc">Ôn tập cuối kỳ I - Tiếng Anh lớp 10</div>
                 </div>
             </div>
             <div class="arrow">→</div>
         </a>
 
-        <a class="subject-card" data-url="https://10a1.github.io/lsazota.github.io/" data-name="Lịch Sử">
+        <a href="https://10a1.github.io/lsazota.github.io/" class="subject-card">
             <div class="subject-info">
                 <div class="subject-icon">📜</div>
                 <div>
                     <div class="subject-title">Lịch Sử</div>
-                    <div class="subject-desc">Sự kiện • Bài tập • Ôn tập học kỳ</div>
+                    <div class="subject-desc">Ôn tập cuối kỳ I - Lịch sử lớp 10</div>
                 </div>
             </div>
             <div class="arrow">→</div>
@@ -370,33 +384,28 @@
     </div>
 
     <script>
-        // Hoa mai rơi đẹp (ít hơn, nhẹ nhàng hơn)
-        const petalsContainer = document.getElementById('petals');
-        for (let i = 0; i < 20; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = (Math.random() * 12 + 12) + 's';
-            petal.style.animationDelay = Math.random() * 15 + 's';
-            petal.style.width = (Math.random() * 8 + 12) + 'px';
-            petal.style.height = (Math.random() * 10 + 20) + 'px';
-            petalsContainer.appendChild(petal);
-        }
+        // Đổi theme
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme || '';
+                document.documentElement.setAttribute('data-theme', theme);
+                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-        // Transition chuyên nghiệp
-        document.querySelectorAll('.subject-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                const url = card.dataset.url;
-                const name = card.dataset.name;
-                
-                document.getElementById('transition-text').textContent = `Đang chuyển đến ${name}...`;
-                document.getElementById('transition').classList.add('show');
-                
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 3000);
+                const color = getComputedStyle(btn).backgroundColor;
+                document.documentElement.style.setProperty('--primary-color', color);
             });
+        });
+
+        // Mở/đóng settings
+        document.getElementById('settings-btn').addEventListener('click', () => {
+            document.getElementById('setting-overlay').classList.toggle('show');
+        });
+
+        document.getElementById('setting-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('setting-overlay')) {
+                document.getElementById('setting-overlay').classList.remove('show');
+            }
         });
     </script>
 </body>
