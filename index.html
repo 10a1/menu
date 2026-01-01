@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LỚP 10A1 - TẾT BÍNH NGỌ 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap');
+
+        :root {
+            --primary-red: #DC2626;
+            --gold: #FFD700;
+            --light-gold: #FEF08A;
+            --bg: #FFFBEB;
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --text-dark: #7F1D1D;
+            --text-light: #991B1B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background Tết sang trọng */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(135deg, #7F1D1D, #DC2626, #F87171, #FCA5A5, #FEE2E2);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, #FFD70030, transparent 60%),
+                radial-gradient(circle at 80% 20%, #FF450030, transparent 60%),
+                radial-gradient(circle at 50% 50%, #FBBF2430, transparent 50%);
+            animation: glow 12s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.15); }
+        }
+
+        /* Hoa mai rơi nhẹ nhàng */
+        .petals {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .petal {
+            position: absolute;
+            width: 16px;
+            height: 24px;
+            background: linear-gradient(#FFD700, #FBBF24);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.9; }
+            85% { opacity: 0.9; }
+            100% { transform: translateY(110vh) rotate(900deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #991B1B, var(--primary-red));
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            border-radius: 28px;
+            margin-bottom: 50px;
+            box-shadow: 0 25px 60px rgba(220, 38, 38, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '✨ CHÚC MỪNG NĂM MỚI 2026 ✨';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255,215,0,0.6);
+            animation: shine 3s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes shine {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; text-shadow: 0 0 30px rgba(255,215,0,0.9); }
+        }
+
+        .header h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            margin: 40px 0 16px 0;
+            text-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            opacity: 0.95;
+        }
+
+        /* Card môn học - đẹp lung linh */
+        .subject-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 48px;
+            margin-bottom: 32px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-16px) scale(1.03);
+            box-shadow: 0 40px 80px rgba(220,38,38,0.25);
+            border-color: var(--gold);
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .subject-card:hover::before {
+            left: 100%;
+        }
+
+        .subject-info {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .subject-icon {
+            font-size: 6rem;
+            transition: all 0.6s ease;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+        }
+
+        .subject-card:hover .subject-icon {
+            transform: translateY(-12px) scale(1.2) rotate(5deg);
+        }
+
+        .subject-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .subject-desc {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .arrow {
+            font-size: 4rem;
+            color: var(--primary-red);
+            transition: all 0.5s ease;
+        }
+
+        .subject-card:hover .arrow {
+            transform: translateX(20px);
+            color: var(--gold);
+        }
+
+        /* Transition overlay đẹp */
+        .transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #991B1Bcc, #DC2626ee);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .transition-overlay.show {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .loading-spinner {
+            width: 100px;
+            height: 100px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            box-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+
+        .transition-text {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-top: 40px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        /* Settings giữ nguyên đẹp */
+        .settings-btn {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .settings-btn:hover {
+            transform: rotate(120deg) scale(1.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { padding: 60px 24px; }
+            .header h1 { font-size: 2.8rem; }
+            .header::after { font-size: 1.6rem; }
+            .subject-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 36px 28px;
+                gap: 28px;
+            }
+            .subject-info { flex-direction: column; gap: 24px; }
+            .subject-icon { font-size: 5.5rem; }
+            .subject-title { font-size: 2.1rem; }
+            .arrow { transform: rotate(90deg); font-size: 3.5rem; }
+            .subject-card:hover .arrow { transform: rotate(90deg) translateY(12px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="petals" id="petals"></div>
+
+    <!-- Transition đẹp -->
+    <div class="transition-overlay" id="transition">
+        <div class="loading-spinner"></div>
+        <div class="transition-text" id="transition-text">Đang chuyển đến...</div>
+    </div>
+
+    <!-- Settings -->
+    <div class="settings-btn" id="settings-btn">⚙️</div>
+
+    <div class="container">
+        <div class="header">
+            <h1>CÁC BÀI TẬP LỚP 10A1</h1>
+            <p>Ôn tập thật tốt để đón năm mới thật vui nhé!</p>
+        </div>
+
+        <a class="subject-card" data-url="https://10a1.github.io/vatly10a1.github.com/" data-name="Vật Lý">
+            <div class="subject-info">
+                <div class="subject-icon">⚡</div>
+                <div>
+                    <div class="subject-title">Vật Lý</div>
+                    <div class="subject-desc">Lý thuyết • Bài tập • Kiểm tra 1 tiết</div>
+                </div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <a class="subject-card" data-url="https://10a1.github.io/hoahocazota.github.io/" data-name="Hóa Học">
+            <div class="subject-info">
+                <div class="subject-icon">🧪</div>
+                <div>
+                    <div class="subject-title">Hóa Học</div>
+                    <div class="subject-desc">Ôn tập cuối kỳ I • Trắc nghiệm • Tự luận</div>
+                </div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <a class="subject-card" data-url="https://10a1.github.io/sinhhoc10a1.github.io/" data-name="Sinh Học">
+            <div class="subject-info">
+                <div class="subject-icon">🧬</div>
+                <div>
+                    <div class="subject-title">Sinh Học</div>
+                    <div class="subject-desc">Di truyền • Sinh thái • Bài kiểm tra</div>
+                </div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <a class="subject-card" data-url="https://10a1.github.io/english10a1.github.io/" data-name="Tiếng Anh">
+            <div class="subject-info">
+                <div class="subject-icon">🇬🇧</div>
+                <div>
+                    <div class="subject-title">Tiếng Anh</div>
+                    <div class="subject-desc">Ngữ pháp • Từ vựng • Bài thi thử</div>
+                </div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <a class="subject-card" data-url="https://10a1.github.io/lsazota.github.io/" data-name="Lịch Sử">
+            <div class="subject-info">
+                <div class="subject-icon">📜</div>
+                <div>
+                    <div class="subject-title">Lịch Sử</div>
+                    <div class="subject-desc">Sự kiện • Bài tập • Ôn tập học kỳ</div>
+                </div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+    </div>
+
+    <script>
+        // Hoa mai rơi đẹp (ít hơn, nhẹ nhàng hơn)
+        const petalsContainer = document.getElementById('petals');
+        for (let i = 0; i < 20; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 12 + 12) + 's';
+            petal.style.animationDelay = Math.random() * 15 + 's';
+            petal.style.width = (Math.random() * 8 + 12) + 'px';
+            petal.style.height = (Math.random() * 10 + 20) + 'px';
+            petalsContainer.appendChild(petal);
+        }
+
+        // Transition chuyên nghiệp
+        document.querySelectorAll('.subject-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = card.dataset.url;
+                const name = card.dataset.name;
+                
+                document.getElementById('transition-text').textContent = `Đang chuyển đến ${name}...`;
+                document.getElementById('transition').classList.add('show');
+                
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
